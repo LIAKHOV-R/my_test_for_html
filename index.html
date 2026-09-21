@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTFOLIO — LIAKHOV ROMAN. ARCHITECT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RPMK5LVRVF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RPMK5LVRVF');
+</script>
+<body>
+
+  <header class="header">
+    <h1>PORTFOLIO</h1>
+    <p class="subtitle">LIAKHOV ROMAN. ARCHITECT</p>
+  </header>
+
+<main class="bingo-grid">
+  <a href="projects/project-01.html" class="cell">
+    <img src="images/icon-png/i-1.png" alt="i-1">
+  </a>
+  <a href="projects/project-02.html" class="cell">
+    <img src="images/icon-png/i-2.png" alt="i-2">
+  </a>
+  <a href="projects/project-03.html" class="cell">
+    <img src="images/icon-png/i-3.png" alt="i-3">
+  </a>
+  <a href="projects/project-04.html" class="cell">
+    <img src="images/icon-png/i-4.png" alt="i-4">
+  </a>
+  <a href="projects/project-05.html" class="cell">
+    <img src="images/icon-png/i-5.png" alt="i-5">
+  </a>
+  <a href="projects/project-06.html" class="cell">
+    <img src="images/icon-png/i-6.png" alt="i-6-1">
+  </a>
+  <a href="projects/project-07.html" class="cell">
+    <img src="images/icon-png/i-7.png" alt="i-7">
+  </a>
+  <a href="projects/project-08.html" class="cell">
+    <img src="images/icon-png/i-8-2.png" alt="i-8-2">
+  </a>
+  <a href="projects/project-09.html" class="cell">
+    <img src="images/icon-png/i-9.png" alt="i-9">
+  </a>
+  <a href="projects/project-10.html" class="cell">
+    <img src="images/icon-png/i-10.png" alt="i-10">
+  </a>
+  <a href="projects/project-11.html" class="cell">
+    <img src="images/icon-png/i-11.png" alt="i-11">
+  </a>
+  <a href="projects/project-12.html" class="cell">
+    <img src="images/icon-png/i-12.png" alt="i-12">
+  </a>
+</main>
+
+<footer class="footer">
+  <a href="bio.html" class="contact-link">CONTACT</a>
+  <p class="copyright">© 2026 Liakhov Roman. All rights reserved.</p>
+  <a href="all.html" class="show-all-btn">SHOW ALL</a>
+</footer>
+<script>
+  document.querySelectorAll('.cell').forEach(cell => {
+    let isAnimating = false;
+
+    cell.addEventListener('mouseenter', () => {
+      if (isAnimating) return;
+
+      isAnimating = true;
+      cell.style.transform = 'rotateY(360deg)';
+
+      // После окончания анимации сбрасываем
+      setTimeout(() => {
+        cell.style.transition = 'none';          // убираем transition, чтобы мгновенно вернуть
+        cell.style.transform = 'rotateY(0deg)';
+        
+        // Возвращаем transition обратно
+        setTimeout(() => {
+          cell.style.transition = 'transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1)';
+          isAnimating = false;
+        }, 20);
+      }, 900); // время = длительности transition
+    });
+  });
+</script>
+  <script>
+  document.getElementById('showAllBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const cells = document.querySelectorAll('.cell');
+    
+    cells.forEach((cell, index) => {
+      // Случайное направление разлёта
+      const x = (Math.random() - 0.5) * 1200;
+      const y = (Math.random() - 0.5) * 800;
+      const rot = (Math.random() - 0.5) * 180;
+
+      cell.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      cell.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(0.3)`;
+      cell.style.opacity = '0';
+    });
+
+    // Переход на all.html после анимации
+    setTimeout(() => {
+      window.location.href = 'all.html';
+    }, 850);
+  });
+</script>
+</body>
+</html>
