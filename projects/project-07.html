@@ -6,16 +6,16 @@
   <title>ПРОЕКТ 07</title>
   <link rel="stylesheet" href="../style.css">
   <style>
-.project-page {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 80px 40px 30px;        /* ← увеличен верхний отступ до 80px */
-  color: #191919;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+  .project-page {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 20px 70px 20px;     /* сильно уменьшили отступы */
+    color: #191919;
+    height: 100vh;               /* занимает всю высоту экрана */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
 
 /* ----- BACK ----- */
 .back-link {
@@ -60,34 +60,38 @@
   line-height: 1.45;
   color: #333;
 }
-/* Кнопки переключения проектов оставляем как были (фиксированные сверху) */
+/* ----- Кнопки переключения проектов (внизу) ----- */
 .project-nav {
   position: fixed;
-  top: 25px;
-  width: 42px;
-  height: 70px;
-  background: rgba(240, 240, 240, 0.85);
+  bottom: 25px;                 /* фиксируем снизу */
+  width: 56px;
+  height: 56px;
+  background: rgba(240, 240, 240, 0.9);
   border: none;
+  border-radius: 50%;           /* круглые */
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 32px;              /* крупные стрелки */
   color: #191919;
   z-index: 200;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
   text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
+
 .project-nav:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.08);
 }
+
 .project-nav.prev-project {
-  left: 0;
-  border-radius: 0 6px 6px 0;
+  left: 30px;
 }
+
 .project-nav.next-project {
-  right: 0;
-  border-radius: 6px 0 0 6px;
+  right: 30px;
 }
 
 /* ----- КАРУСЕЛЬ ----- */
@@ -193,7 +197,7 @@
 
   <div class="project-page">
 
-    <a href="../index.html" class="back-link">BACK&lt;</a>
+    <a href="../index.html" class="back-link"><b>BACK&lt;</b></a>
 
     <!-- ШАПКА + БОЛЬШИЕ КНОПКИ ПРОЕКТОВ -->
     <div class="project-header-wrapper">
