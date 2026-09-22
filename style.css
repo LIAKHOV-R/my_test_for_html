@@ -40,7 +40,9 @@ body {
   margin-top: 0.2px;
   color: #191919;
 }
-
+.header-title {
+  font-size: clamp(1.4rem, 4vw, 3.5rem);
+}
 /* ----- GRID ----- */
 .bingo-grid {
   display: grid;
@@ -74,7 +76,23 @@ body {
 .cell:hover {
   filter: brightness(0.95);
 }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: ...;
+}
 
+@media (max-width: 1200px) {
+  .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
 /* ----- CONTACT ----- */
 .footer {
   margin-top: auto;
