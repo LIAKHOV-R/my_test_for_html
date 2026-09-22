@@ -3,7 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
 body {
   font-family: Corbel bold, "Segoe UI", Arial bold, sans-serif;
   background-color: #FFFFFF;
@@ -13,6 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 /* ----- HEADER ----- */
