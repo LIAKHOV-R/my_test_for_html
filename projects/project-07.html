@@ -9,7 +9,7 @@
   .project-page {
     max-width: 1920px;
     margin: 0 auto;
-    padding: 20px 70px 20px;     /* сильно уменьшили отступы */
+    padding: 20px 70px 110px;     /* сильно уменьшили отступы */
     color: #191919;
     height: 100vh;               /* занимает всю высоту экрана */
     display: flex;
@@ -60,39 +60,37 @@
   line-height: 1.45;
   color: #333;
 }
-/* ----- Кнопки переключения проектов (внизу) ----- */
+/* ----- Кнопки переключения проектов (внизу, плитки) ----- */
 .project-nav {
   position: fixed;
-  bottom: 25px;                 /* фиксируем снизу */
-  width: 56px;
-  height: 56px;
-  background: rgba(240, 240, 240, 0.9);
+  bottom: 25px;
+  width: 70px;
+  height: 90px;
+  background: rgba(240, 240, 240, 0.92);
   border: none;
-  border-radius: 50%;           /* круглые */
+  border-radius: 6px;              /* лёгкое скругление */
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;              /* крупные стрелки */
+  font-size: 36px;                 /* крупные стрелки */
   color: #191919;
   z-index: 200;
   transition: background 0.2s, transform 0.2s;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .project-nav:hover {
   background: rgba(255, 255, 255, 1);
-  transform: scale(1.08);
+  transform: translateY(-3px);
 }
 
 .project-nav.prev-project {
-  left: 30px;
-}
+  left: 25px;
 
 .project-nav.next-project {
-  right: 30px;
-}
+  right: 25px;
 
 /* ----- КАРУСЕЛЬ ----- */
 .carousel {
@@ -176,18 +174,18 @@
 
 @media (max-width: 700px) {
   .project-nav {
-    bottom: 18px;
-    width: 48px;
-    height: 48px;
-    font-size: 26px;
+    bottom: 16px;
+    width: 54px;
+    height: 70px;
+    font-size: 28px;
   }
 
   .project-nav.prev-project {
-    left: 16px;
+    left: 12px;
   }
 
   .project-nav.next-project {
-    right: 16px;
+    right: 12px;
   }
 }
   .carousel {
