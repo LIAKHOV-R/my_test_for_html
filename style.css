@@ -49,12 +49,12 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 150px);
   grid-template-rows: repeat(3, 150px);
-  width: 100%;
+  width: 80%;
   max-width: 920px;
   margin: 0 auto 60px;
   padding: 0 20px;
   box-sizing: border-box;
-  gap: 40px 60px;
+  gap: 25px 50px;
   perspective: 1200px;
 
   /* По умолчанию 4 колонки */
