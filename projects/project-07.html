@@ -91,7 +91,23 @@
 
 .project-nav.next-project {
   right: 25px;
+  }
+@media (max-width: 700px) {
+  .project-nav {
+    bottom: 16px;
+    width: 54px;
+    height: 70px;
+    font-size: 28px;
+  }
 
+  .project-nav.prev-project {
+    left: 12px;
+  }
+
+  .project-nav.next-project {
+    right: 12px;
+  }
+}
 /* ----- КАРУСЕЛЬ ----- */
 .carousel {
   position: relative;
@@ -173,21 +189,17 @@
 }
 
 @media (max-width: 700px) {
+  .project-page {
+    padding: 15px 14px 20px;
+  }
+
   .project-nav {
-    bottom: 16px;
-    width: 54px;
-    height: 70px;
-    font-size: 28px;
+    top: 18px;
+    width: 34px;
+    height: 56px;
+    font-size: 22px;
   }
 
-  .project-nav.prev-project {
-    left: 12px;
-  }
-
-  .project-nav.next-project {
-    right: 12px;
-  }
-}
   .carousel {
     width: calc(100% - 16px);
     aspect-ratio: 8 / 3;        /* оставляем 8:3 даже на мобилках */
