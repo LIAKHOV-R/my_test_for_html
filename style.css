@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Corbel bold, "Segoe UI", Arial bold, sans-serif;
+  background-color: #FFFFFF;
+  color: #191919;
+  min-height: 100vh;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ----- HEADER ----- */
+.header {
+  text-align: center;
+  padding-top: 30px;
+  margin-bottom: 70px;
+}
+
+.header h1 {
+  font-size: 80px;           /* увеличили PORTFOLIO */
+  font-weight: 500;
+  letter-spacing: 2px;      /* чуть шире, чтобы визуально тянулось */
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: 22px;           /* сделали крупнее */
+  font-weight: 500;
+  letter-spacing: 5px;     /* подгоняем ширину под PORTFOLIO */
+  margin-top: 0.2px;
+  color: #191919;
+}
+
+/* ----- GRID ----- */
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: repeat(3, 150px);
+  gap: 45px 90px;
+  justify-content: center;
+  margin-bottom: 80px;
+  perspective: 1200px;
+}
+
+.cell {
+  width: 150px;
+  height: 150px;
+  display: block;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.4, 0.0, 0.2, 1); /* более плавно */
+  cursor: pointer;
+}
+
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  backface-visibility: hidden;
+}
+
+/* Убираем старый :hover с rotate */
+.cell:hover {
+  filter: brightness(0.95);
+}
+
+/* ----- CONTACT ----- */
+.footer {
+  margin-top: auto;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.contact-link {
+  font-family: Corbel bold, "Segoe UI", Arial bold, sans-serif;
+  font-size: 20px;           /* чуть крупнее */
+  font-weight: 500;          /* чуть жирнее */
+  letter-spacing: 5px;
+  color: #191919;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.contact-link:hover {
+  opacity: 0.7;
+}
+
+/* Убираем стандартный синий цвет ссылок */
+a {
+  color: inherit;
+}
+
+/* ===== Кнопка BACK для всех внутренних страниц ===== */
+    .back-link {
+      grid-column: 1 / -1;
+      font-family: Corbel, "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #191919;
+      text-decoration: none;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    .back-link:hover {
+      opacity: 0.7;
+    }
+.show-all-btn {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #191919;
+  text-decoration: none;
+  border-bottom: 1px solid #191919;
+  padding-bottom: 2px;
+  text-align: center;
+}
+.show-all-btn:hover {
+  opacity: 0.7;
+}
+.copyright {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #969696;
+  font-weight: 400;
+  text-transform: none;
+}
