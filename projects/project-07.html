@@ -189,17 +189,18 @@
     aspect-ratio: 8 / 3;        /* оставляем 8:3 даже на мобилках */
   }
 }
-
-    /* Лайтбокс */
+    
+/* ===== Лайтбокс только для смартфонов ===== */
 .lightbox {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.92);
-  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .lightbox.active {
@@ -208,34 +209,37 @@
 
 .lightbox img {
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 85vh;
   object-fit: contain;
   border-radius: 4px;
 }
 
 .lightbox-close {
   position: absolute;
-  top: 20px;
-  right: 25px;
+  top: 18px;
+  right: 22px;
+  background: none;
+  border: none;
+  color: #fff;
   font-size: 42px;
-  color: white;
-  cursor: pointer;
   line-height: 1;
-  user-select: none;
-  z-index: 1001;
+  cursor: pointer;
+  z-index: 10000;
+  padding: 0;
+  width: 44px;
+  height: 44px;
 }
 
-.lightbox-close:hover {
-  opacity: 0.7;
-}
-
-/* На десктопе можно отключить открытие по клику, если хочешь */
+/* На десктопе полностью отключаем */
 @media (min-width: 701px) {
+  .lightbox {
+    display: none !important;
+  }
+  
   .carousel-slide img {
     cursor: default;
   }
 }
-    
 </style>
 </head>
 <body>
@@ -298,13 +302,6 @@
     </div>
 
   </div>
-
-  <!-- Лайтбокс -->
-<div id="lightbox" class="lightbox">
-  <span class="lightbox-close">&times;</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
-  
   <script>
     // ===== Карусель картинок =====
     const track = document.querySelector('.carousel-track');
@@ -349,37 +346,57 @@
       updateCarousel();
     }, { passive: false });
 
-    // ===== Лайтбокс для мобильных =====
+    // ===== Лайтбокс ТОЛЬКО для мобильных =====
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.querySelector('.lightbox-close');
 
-// Открытие по клику на картинку (особенно полезно на мобильных)
+function openLightbox(src) {
+  if (window.innerWidth > 700) return; // только смартфоны
+  
+  lightboxImg.src = src;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  lightboxImg.src = '';
+}
+
+// Клик по картинкам карусели
 document.querySelectorAll('.carousel-slide img').forEach(img => {
   img.addEventListener('click', () => {
-    // Можно ограничить только мобильными:
-    // if (window.innerWidth > 700) return;
-
-    lightboxImg.src = img.src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // блокируем скролл страницы
+    openLightbox(img.src);
   });
 });
 
 // Закрытие по крестику
-lightboxClose.addEventListener('click', () => {
-  lightbox.classList.remove('active');
-  document.body.style.overflow = '';
+lightboxClose.addEventListener('click', (e) => {
+  e.stopPropagation();
+  closeLightbox();
 });
 
 // Закрытие по клику на тёмный фон
 lightbox.addEventListener('click', (e) => {
   if (e.target === lightbox) {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
+    closeLightbox();
+  }
+});
+
+// Закрытие по Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    closeLightbox();
   }
 });
   </script>
-
+  
+<!-- Лайтбокс (только для мобильных) -->
+<div id="lightbox" class="lightbox">
+  <button class="lightbox-close" aria-label="Закрыть">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 </body>
 </html>
