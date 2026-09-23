@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="../style.css">
   <style>
   .project-page {
-    max-width: 2560px;
+    max-width: 1900px;
     margin: 0 auto;
-    padding: 80px 65px 40px 30px;     /* сильно уменьшили отступы */
+    padding: 80px 30px 60px 30px;     /* сильно уменьшили отступы */
     color: #191919;
     height: 100vh;               /* занимает всю высоту экрана */
     display: flex;
@@ -95,7 +95,7 @@
 .carousel {
   position: relative;
   width: calc(100% - 32px);     /* одинаковые отступы слева и справа */
-  max-width: 1800px;
+  max-width: 1680px;
   margin: 0 auto;
   aspect-ratio: 8 / 3;          /* строго 8:3 */
   overflow: hidden;
@@ -156,21 +156,6 @@
 }
 
 /* ===== АДАПТИВ ===== */
-@media (max-width: 1601px) {
-  .project-page {
-    padding: 30px 60px 40px;
-  }
-
-  .project-header {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .carousel {
-    width: calc(100% - 36px);
-  }
-}
-
 @media (max-width: 1100px) {
   .project-page {
     padding: 18px 20px 25px;
