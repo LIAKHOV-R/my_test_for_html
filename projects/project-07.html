@@ -189,6 +189,53 @@
     aspect-ratio: 8 / 3;        /* оставляем 8:3 даже на мобилках */
   }
 }
+
+    /* Лайтбокс */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 42px;
+  color: white;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+  z-index: 1001;
+}
+
+.lightbox-close:hover {
+  opacity: 0.7;
+}
+
+/* На десктопе можно отключить открытие по клику, если хочешь */
+@media (min-width: 701px) {
+  .carousel-slide img {
+    cursor: default;
+  }
+}
+    
 </style>
 </head>
 <body>
@@ -252,6 +299,12 @@
 
   </div>
 
+  <!-- Лайтбокс -->
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+  
   <script>
     // ===== Карусель картинок =====
     const track = document.querySelector('.carousel-track');
@@ -295,6 +348,37 @@
       }
       updateCarousel();
     }, { passive: false });
+
+    // ===== Лайтбокс для мобильных =====
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+// Открытие по клику на картинку (особенно полезно на мобильных)
+document.querySelectorAll('.carousel-slide img').forEach(img => {
+  img.addEventListener('click', () => {
+    // Можно ограничить только мобильными:
+    // if (window.innerWidth > 700) return;
+
+    lightboxImg.src = img.src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // блокируем скролл страницы
+  });
+});
+
+// Закрытие по крестику
+lightboxClose.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+// Закрытие по клику на тёмный фон
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
   </script>
 
 </body>
