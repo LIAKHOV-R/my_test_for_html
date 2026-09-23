@@ -173,20 +173,17 @@
 
 @media (max-width: 700px) {
   .project-page {
-    padding: 100px 14px 20px;     /* на телефоне чуть меньше, но тоже опустили */
+    padding: 100px 14px 20px;
   }
-
   .project-nav {
     top: 18px;
     width: 34px;
     height: 56px;
     font-size: 22px;
   }
-}
-
   .carousel {
     width: calc(100% - 16px);
-    aspect-ratio: 8 / 3;        /* оставляем 8:3 даже на мобилках */
+    aspect-ratio: 8 / 3;
   }
 }
     
@@ -300,7 +297,12 @@
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-
+    
+<!-- Лайтбокс (только для мобильных) -->
+    <div id="lightbox" class="lightbox">
+      <button class="lightbox-close" aria-label="Закрыть">&times;</button>
+      <img id="lightbox-img" src="" alt="">
+    </div>
   </div>
   <script>
     // ===== Карусель картинок =====
@@ -346,57 +348,45 @@
       updateCarousel();
     }, { passive: false });
 
-    // ===== Лайтбокс ТОЛЬКО для мобильных =====
+   // ===== Лайтбокс ТОЛЬКО для мобильных =====
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxClose = document.querySelector('.lightbox-close');
 
-function openLightbox(src) {
-  if (window.innerWidth > 700) return; // только смартфоны
-  
-  lightboxImg.src = src;
-  lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+if (lightbox && lightboxImg && lightboxClose) {
+  function openLightbox(src) {
+    if (window.innerWidth > 700) return;
+    
+    lightboxImg.src = src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-function closeLightbox() {
-  lightbox.classList.remove('active');
-  document.body.style.overflow = '';
-  lightboxImg.src = '';
-}
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
 
-// Клик по картинкам карусели
-document.querySelectorAll('.carousel-slide img').forEach(img => {
-  img.addEventListener('click', () => {
-    openLightbox(img.src);
+  document.querySelectorAll('.carousel-slide img').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src));
   });
-});
 
-// Закрытие по крестику
-lightboxClose.addEventListener('click', (e) => {
-  e.stopPropagation();
-  closeLightbox();
-});
-
-// Закрытие по клику на тёмный фон
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
+  lightboxClose.addEventListener('click', (e) => {
+    e.stopPropagation();
     closeLightbox();
-  }
-});
+  });
 
-// Закрытие по Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-    closeLightbox();
-  }
-});
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+}
   </script>
-  
-<!-- Лайтбокс (только для мобильных) -->
-<div id="lightbox" class="lightbox">
-  <button class="lightbox-close" aria-label="Закрыть">&times;</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
 </body>
 </html>
