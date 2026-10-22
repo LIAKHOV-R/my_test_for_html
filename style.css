@@ -198,15 +198,15 @@ a {
 }
 
 /* =========================================
-   3D КУБ — исправленная версия
+   3D КУБ — стабильная версия
 ========================================= */
 
 .scene {
   width: 100%;
   max-width: 920px;
-  height: 480px;                    /* фиксированная высота — важно! */
-  margin: 20px auto 60px;
-  perspective: 1600px;
+  height: 510px;
+  margin: 50px auto 70px;          /* отступ от шапки */
+  perspective: 2000px;             /* более мягкая перспектива */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -218,7 +218,7 @@ a {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .face {
@@ -233,25 +233,24 @@ a {
   align-items: center;
 }
 
-/* Глубина куба */
+/* Меньшая глубина = меньше искажений */
 .face.front {
-  transform: translateZ(200px);
+  transform: translateZ(140px);
 }
 
 .face.left {
-  transform: rotateY(-90deg) translateZ(200px);
+  transform: rotateY(-90deg) translateZ(140px);
 }
 
 .face.right {
-  transform: rotateY(90deg) translateZ(200px);
+  transform: rotateY(90deg) translateZ(140px);
 }
 
-/* Сетка внутри граней — убираем лишние отступы */
+/* Сетка внутри граней — как было изначально */
 .face .bingo-grid {
-  margin: 0;
-  padding: 0 15px;
+  margin: 0 auto;
+  padding: 0 20px;
   width: 100%;
-  max-width: 100%;
 }
 
 /* Цветные плитки */
@@ -289,27 +288,27 @@ a {
   border-radius: 8px 0 0 8px;
 }
 
-/* ===== Адаптив куба ===== */
+/* Адаптив */
 @media (max-width: 900px) {
   .scene {
-    height: 420px;
-    margin-top: 10px;
+    height: 440px;
+    margin: 30px auto 50px;
   }
 
-  .face.front { transform: translateZ(160px); }
-  .face.left  { transform: rotateY(-90deg) translateZ(160px); }
-  .face.right { transform: rotateY(90deg) translateZ(160px); }
+  .face.front { transform: translateZ(110px); }
+  .face.left  { transform: rotateY(-90deg) translateZ(110px); }
+  .face.right { transform: rotateY(90deg) translateZ(110px); }
 }
 
 @media (max-width: 600px) {
   .scene {
-    height: 360px;
-    margin-top: 5px;
+    height: 380px;
+    margin: 20px auto 40px;
   }
 
-  .face.front { transform: translateZ(130px); }
-  .face.left  { transform: rotateY(-90deg) translateZ(130px); }
-  .face.right { transform: rotateY(90deg) translateZ(130px); }
+  .face.front { transform: translateZ(90px); }
+  .face.left  { transform: rotateY(-90deg) translateZ(90px); }
+  .face.right { transform: rotateY(90deg) translateZ(90px); }
 
   .cube-nav {
     width: 40px;
