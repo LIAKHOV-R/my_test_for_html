@@ -12,53 +12,29 @@
     <p class="subtitle">TEXT_FOR_VIEW. HTML_HTML</p>
   </header>
 
-  <!-- ===== 3D КУБ ===== -->
+  <!-- 3D КУБ -->
   <div class="scene">
     <div class="cube" id="cube">
 
-      <!-- ПЕРЕДНЯЯ ГРАНЬ — проекты -->
+      <!-- Передняя грань — твои проекты -->
       <div class="face front">
         <main class="bingo-grid">
-          <a href="projects/project-01.html" class="cell">
-            <img src="images/icon-png/i-1.png" alt="i-1">
-          </a>
-          <a href="projects/project-02.html" class="cell">
-            <img src="images/icon-png/i-2.png" alt="i-2">
-          </a>
-          <a href="projects/project-03.html" class="cell">
-            <img src="images/icon-png/i-3.png" alt="i-3">
-          </a>
-          <a href="projects/project-04.html" class="cell">
-            <img src="images/icon-png/i-4.png" alt="i-4">
-          </a>
-          <a href="projects/project-05.html" class="cell">
-            <img src="images/icon-png/i-5.png" alt="i-5">
-          </a>
-          <a href="projects/project-06.html" class="cell">
-            <img src="images/icon-png/i-6.png" alt="i-6-1">
-          </a>
-          <a href="projects/project-07.html" class="cell">
-            <img src="images/icon-png/i-7.png" alt="i-7">
-          </a>
-          <a href="projects/project-08.html" class="cell">
-            <img src="images/icon-png/i-8-2.png" alt="i-8-2">
-          </a>
-          <a href="projects/project-09.html" class="cell">
-            <img src="images/icon-png/i-9.png" alt="i-9">
-          </a>
-          <a href="projects/project-10.html" class="cell">
-            <img src="images/icon-png/i-10.png" alt="i-10">
-          </a>
-          <a href="projects/project-11.html" class="cell">
-            <img src="images/icon-png/i-11.png" alt="i-11">
-          </a>
-          <a href="projects/project-12.html" class="cell">
-            <img src="images/icon-png/i-12.png" alt="i-12">
-          </a>
+          <a href="projects/project-01.html" class="cell"><img src="images/icon-png/i-1.png" alt="i-1"></a>
+          <a href="projects/project-02.html" class="cell"><img src="images/icon-png/i-2.png" alt="i-2"></a>
+          <a href="projects/project-03.html" class="cell"><img src="images/icon-png/i-3.png" alt="i-3"></a>
+          <a href="projects/project-04.html" class="cell"><img src="images/icon-png/i-4.png" alt="i-4"></a>
+          <a href="projects/project-05.html" class="cell"><img src="images/icon-png/i-5.png" alt="i-5"></a>
+          <a href="projects/project-06.html" class="cell"><img src="images/icon-png/i-6.png" alt="i-6-1"></a>
+          <a href="projects/project-07.html" class="cell"><img src="images/icon-png/i-7.png" alt="i-7"></a>
+          <a href="projects/project-08.html" class="cell"><img src="images/icon-png/i-8-2.png" alt="i-8-2"></a>
+          <a href="projects/project-09.html" class="cell"><img src="images/icon-png/i-9.png" alt="i-9"></a>
+          <a href="projects/project-10.html" class="cell"><img src="images/icon-png/i-10.png" alt="i-10"></a>
+          <a href="projects/project-11.html" class="cell"><img src="images/icon-png/i-11.png" alt="i-11"></a>
+          <a href="projects/project-12.html" class="cell"><img src="images/icon-png/i-12.png" alt="i-12"></a>
         </main>
       </div>
 
-      <!-- ЛЕВАЯ ГРАНЬ — Общественная деятельность (#7cdef2) -->
+      <!-- Левая грань -->
       <div class="face left">
         <div class="bingo-grid">
           <div class="cell color-cell" style="background:#7cdef2"></div>
@@ -76,7 +52,7 @@
         </div>
       </div>
 
-      <!-- ПРАВАЯ ГРАНЬ — Творчество (#b57b70) -->
+      <!-- Правая грань -->
       <div class="face right">
         <div class="bingo-grid">
           <div class="cell color-cell" style="background:#b57b70"></div>
@@ -97,7 +73,7 @@
     </div>
   </div>
 
-  <!-- Стрелки поворота куба -->
+  <!-- Стрелки -->
   <button class="cube-nav prev" id="prevFace">‹</button>
   <button class="cube-nav next" id="nextFace">›</button>
 
@@ -108,7 +84,7 @@
   </footer>
 
   <script>
-    // ===== Поворот куба =====
+    // Поворот куба
     const cube = document.getElementById('cube');
     let currentRotation = 0;
 
@@ -122,7 +98,7 @@
       cube.style.transform = `rotateY(${currentRotation}deg)`;
     });
 
-    // ===== Анимация плиток (только на передней грани) =====
+    // Анимация плиток (только передняя грань)
     document.querySelectorAll('.front .cell').forEach(cell => {
       let isAnimating = false;
       cell.addEventListener('mouseenter', () => {
@@ -140,11 +116,10 @@
       });
     });
 
-    // ===== SHOW ALL =====
+    // SHOW ALL
     document.getElementById('showAllBtn').addEventListener('click', function(e) {
       e.preventDefault();
       const cells = document.querySelectorAll('.front .cell');
-      
       cells.forEach((cell) => {
         const x = (Math.random() - 0.5) * 1200;
         const y = (Math.random() - 0.5) * 800;
@@ -153,11 +128,9 @@
         cell.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(0.3)`;
         cell.style.opacity = '0';
       });
-
       setTimeout(() => {
         window.location.href = 'all.html';
       }, 850);
     });
   </script>
 </body>
-</html>
