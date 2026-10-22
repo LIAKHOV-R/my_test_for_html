@@ -16,7 +16,7 @@
   <div class="scene">
     <div class="cube" id="cube">
 
-      <!-- Передняя грань — твои проекты -->
+      <!-- Передняя грань — оригинальная сетка -->
       <div class="face front">
         <main class="bingo-grid">
           <a href="projects/project-01.html" class="cell"><img src="images/icon-png/i-1.png" alt="i-1"></a>
@@ -73,7 +73,6 @@
     </div>
   </div>
 
-  <!-- Стрелки -->
   <button class="cube-nav prev" id="prevFace">‹</button>
   <button class="cube-nav next" id="nextFace">›</button>
 
@@ -84,7 +83,6 @@
   </footer>
 
   <script>
-    // Поворот куба
     const cube = document.getElementById('cube');
     let currentRotation = 0;
 
@@ -98,7 +96,7 @@
       cube.style.transform = `rotateY(${currentRotation}deg)`;
     });
 
-    // Анимация плиток (только передняя грань)
+    // Анимация только передней грани
     document.querySelectorAll('.front .cell').forEach(cell => {
       let isAnimating = false;
       cell.addEventListener('mouseenter', () => {
@@ -116,7 +114,6 @@
       });
     });
 
-    // SHOW ALL
     document.getElementById('showAllBtn').addEventListener('click', function(e) {
       e.preventDefault();
       const cells = document.querySelectorAll('.front .cell');
@@ -134,3 +131,4 @@
     });
   </script>
 </body>
+</html>
