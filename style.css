@@ -200,7 +200,8 @@ a {
 .scene {
   width: 100%;
   max-width: 920px;
-  perspective: 3000px;
+  margin: 0 auto 60px;
+  perspective: 2000px;
 }
 
 .cube {
@@ -208,37 +209,43 @@ a {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 480px;          /* важно — задаём высоту */
 }
 
+/* Все грани */
 .face {
-  width: 100%;
-  backface-visibility: hidden;
-}
-
-.face.front {
-  position: relative;
-}
-
-.face.left,
-.face.right {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
 }
 
-/* Очень маленькая глубина — почти нет искажений */
+/* Передняя грань */
+.face.front {
+  transform: translateZ(0);
+}
+
+/* Левая грань */
 .face.left {
   transform: rotateY(-90deg) translateZ(460px);
 }
 
+/* Правая грань */
 .face.right {
   transform: rotateY(90deg) translateZ(460px);
 }
 
-/* Цветные плитки — без скруглений */
+/* Сетка внутри граней */
+.face .bingo-grid {
+  margin-bottom: 0;
+  height: 100%;
+}
+
+/* Цветные плитки */
 .color-cell {
-  /* ничего лишнего */
+  /* без скруглений */
 }
 
 /* Стрелки */
