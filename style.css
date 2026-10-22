@@ -23,7 +23,7 @@ body {
 /* ----- HEADER ----- */
 .header {
   text-align: center;
-  padding: 25px 20px 30px;
+  padding: 25px 20px 40px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -45,13 +45,13 @@ body {
   color: #191919;
 }
 
-/* ----- GRID (исходные размеры) ----- */
+/* ----- GRID (как в исходнике) ----- */
 .bingo-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
   max-width: 920px;
-  margin: 0 auto;
+  margin: 0 auto 60px;
   padding: 0 20px;
   box-sizing: border-box;
   gap: 28px 40px;
@@ -76,7 +76,7 @@ body {
   backface-visibility: hidden;
 }
 
-/* ===== АДАПТИВ СЕТКИ ===== */
+/* Адаптив сетки */
 @media (max-width: 1100px) {
   .bingo-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -196,15 +196,11 @@ a {
   text-transform: none;
 }
 
-/* =========================================
-   3D КУБ (аккуратная версия без перекрестий)
-========================================= */
-
+/* ===== 3D КУБ ===== */
 .scene {
   width: 100%;
   max-width: 920px;
-  margin: 10px auto 50px;
-  perspective: 2500px;          /* мягкая перспектива */
+  perspective: 3000px;
 }
 
 .cube {
@@ -214,14 +210,13 @@ a {
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Грани */
 .face {
   width: 100%;
   backface-visibility: hidden;
 }
 
 .face.front {
-  position: relative;           /* передняя грань в потоке — задаёт высоту */
+  position: relative;
 }
 
 .face.left,
@@ -229,22 +224,21 @@ a {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 }
 
-/* Небольшая глубина = нет сильного сужения */
+/* Очень маленькая глубина — почти нет искажений */
 .face.left {
-  transform: rotateY(-90deg) translateZ(50%);
-  transform-origin: center left;
+  transform: rotateY(-90deg) translateZ(460px);
 }
 
 .face.right {
-  transform: rotateY(90deg) translateZ(50%);
-  transform-origin: center right;
+  transform: rotateY(90deg) translateZ(460px);
 }
 
-/* Цветные плитки */
+/* Цветные плитки — без скруглений */
 .color-cell {
-  border-radius: 4px;
+  /* ничего лишнего */
 }
 
 /* Стрелки */
@@ -260,7 +254,6 @@ a {
   color: #191919;
   cursor: pointer;
   z-index: 100;
-  transition: background 0.2s;
 }
 
 .cube-nav:hover {
@@ -275,12 +268,4 @@ a {
 .cube-nav.next {
   right: 0;
   border-radius: 8px 0 0 8px;
-}
-
-@media (max-width: 600px) {
-  .cube-nav {
-    width: 38px;
-    height: 60px;
-    font-size: 24px;
-  }
 }
