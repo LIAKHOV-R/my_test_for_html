@@ -23,7 +23,7 @@ body {
 /* ----- HEADER ----- */
 .header {
   text-align: center;
-  padding: 25px 20px 40px;
+  padding: 25px 20px 30px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -45,17 +45,16 @@ body {
   color: #191919;
 }
 
-/* ----- GRID ----- */
+/* ----- GRID (исходные размеры) ----- */
 .bingo-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
   max-width: 920px;
-  margin: 0 auto 60px;
+  margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
   gap: 28px 40px;
-  perspective: 1200px;
 }
 
 .cell {
@@ -198,59 +197,49 @@ a {
 }
 
 /* =========================================
-   3D КУБ — стабильная версия
+   3D КУБ (аккуратная версия без перекрестий)
 ========================================= */
 
 .scene {
   width: 100%;
   max-width: 920px;
-  height: 510px;
-  margin: 50px auto 70px;          /* отступ от шапки */
-  perspective: 2000px;             /* более мягкая перспектива */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  margin: 10px auto 50px;
+  perspective: 2500px;          /* мягкая перспектива */
 }
 
 .cube {
   width: 100%;
-  height: 100%;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Грани */
 .face {
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.face.front {
+  position: relative;           /* передняя грань в потоке — задаёт высоту */
+}
+
+.face.left,
+.face.right {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* Меньшая глубина = меньше искажений */
-.face.front {
-  transform: translateZ(140px);
-}
-
+/* Небольшая глубина = нет сильного сужения */
 .face.left {
-  transform: rotateY(-90deg) translateZ(140px);
+  transform: rotateY(-90deg) translateZ(50%);
+  transform-origin: center left;
 }
 
 .face.right {
-  transform: rotateY(90deg) translateZ(140px);
-}
-
-/* Сетка внутри граней — как было изначально */
-.face .bingo-grid {
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 100%;
+  transform: rotateY(90deg) translateZ(50%);
+  transform-origin: center right;
 }
 
 /* Цветные плитки */
@@ -263,11 +252,11 @@ a {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 80px;
+  width: 46px;
+  height: 76px;
   background: rgba(240, 240, 240, 0.9);
   border: none;
-  font-size: 32px;
+  font-size: 30px;
   color: #191919;
   cursor: pointer;
   z-index: 100;
@@ -288,31 +277,10 @@ a {
   border-radius: 8px 0 0 8px;
 }
 
-/* Адаптив */
-@media (max-width: 900px) {
-  .scene {
-    height: 440px;
-    margin: 30px auto 50px;
-  }
-
-  .face.front { transform: translateZ(110px); }
-  .face.left  { transform: rotateY(-90deg) translateZ(110px); }
-  .face.right { transform: rotateY(90deg) translateZ(110px); }
-}
-
 @media (max-width: 600px) {
-  .scene {
-    height: 380px;
-    margin: 20px auto 40px;
-  }
-
-  .face.front { transform: translateZ(90px); }
-  .face.left  { transform: rotateY(-90deg) translateZ(90px); }
-  .face.right { transform: rotateY(90deg) translateZ(90px); }
-
   .cube-nav {
-    width: 40px;
-    height: 64px;
-    font-size: 26px;
+    width: 38px;
+    height: 60px;
+    font-size: 24px;
   }
 }
