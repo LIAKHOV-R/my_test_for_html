@@ -198,18 +198,19 @@ a {
 }
 
 /* =========================================
-   3D КУБ (новое)
+   3D КУБ — исправленная версия
 ========================================= */
 
 .scene {
   width: 100%;
   max-width: 920px;
-  height: 520px;
-  margin: 0 auto 40px;
-  perspective: 1400px;
+  height: 480px;                    /* фиксированная высота — важно! */
+  margin: 20px auto 60px;
+  perspective: 1600px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .cube {
@@ -222,6 +223,8 @@ a {
 
 .face {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
@@ -232,35 +235,38 @@ a {
 
 /* Глубина куба */
 .face.front {
-  transform: translateZ(180px);
+  transform: translateZ(200px);
 }
 
 .face.left {
-  transform: rotateY(-90deg) translateZ(180px);
+  transform: rotateY(-90deg) translateZ(200px);
 }
 
 .face.right {
-  transform: rotateY(90deg) translateZ(180px);
+  transform: rotateY(90deg) translateZ(200px);
 }
 
-/* Сетка внутри граней куба */
+/* Сетка внутри граней — убираем лишние отступы */
 .face .bingo-grid {
-  margin-bottom: 0;
+  margin: 0;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 100%;
 }
 
-/* Цветные плитки на боковых гранях */
+/* Цветные плитки */
 .color-cell {
   border-radius: 4px;
 }
 
-/* Стрелки управления кубом */
+/* Стрелки */
 .cube-nav {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
   width: 48px;
   height: 80px;
-  background: rgba(240, 240, 240, 0.85);
+  background: rgba(240, 240, 240, 0.9);
   border: none;
   font-size: 32px;
   color: #191919;
@@ -270,7 +276,7 @@ a {
 }
 
 .cube-nav:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
 }
 
 .cube-nav.prev {
@@ -283,27 +289,27 @@ a {
   border-radius: 8px 0 0 8px;
 }
 
-/* Адаптив куба */
+/* ===== Адаптив куба ===== */
 @media (max-width: 900px) {
   .scene {
-    height: 440px;
+    height: 420px;
+    margin-top: 10px;
   }
 
-  .face.front {
-    transform: translateZ(140px);
-  }
-  .face.left {
-    transform: rotateY(-90deg) translateZ(140px);
-  }
-  .face.right {
-    transform: rotateY(90deg) translateZ(140px);
-  }
+  .face.front { transform: translateZ(160px); }
+  .face.left  { transform: rotateY(-90deg) translateZ(160px); }
+  .face.right { transform: rotateY(90deg) translateZ(160px); }
 }
 
 @media (max-width: 600px) {
   .scene {
-    height: 380px;
+    height: 360px;
+    margin-top: 5px;
   }
+
+  .face.front { transform: translateZ(130px); }
+  .face.left  { transform: rotateY(-90deg) translateZ(130px); }
+  .face.right { transform: rotateY(90deg) translateZ(130px); }
 
   .cube-nav {
     width: 40px;
